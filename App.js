@@ -254,6 +254,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="QuizDecpScreen" component={QuizDecpScreen} />
+        {/* <Stack.Screen name="ProfileScreen" component={ProfileScreen}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

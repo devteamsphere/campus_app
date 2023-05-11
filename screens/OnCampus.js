@@ -45,7 +45,7 @@ const OnCampus = () => {
       console.log(jobs.data.data);
     };
     initial();
-  }, []);
+  }, [token]);
   return (
     <SafeAreaView style={styles.container}>
       {jobs ? (

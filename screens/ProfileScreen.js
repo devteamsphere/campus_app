@@ -126,10 +126,11 @@ getData();
             <Text style={styles.menuItemText}>Support</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple onPress={() => {AsyncStorage.clear();
+        navigation.navigate('LoginScreen')}}>
           <View style={styles.menuItem}>
             <Ionicons name="settings" color="#000000" size={25}/>
-            <Text style={styles.menuItemText}>Settings</Text>
+            <Text style={styles.menuItemText}>Logout</Text>
           </View>
         </TouchableRipple>
       </View>
