@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import alert from "../utils/alert";
 import { View, Text, SafeAreaView, Keyboard, Alert } from "react-native";
 import COLORS from "../theme/colors";
@@ -13,21 +13,32 @@ const LoginScreen = ({ navigation }) => {
   const [inputs, setInputs] = React.useState({ email: "", password: "" });
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  useEffect(() => {
+    const initial = async () => {
+      AsyncStorage.getItem("token").then((value) => {
+        if (value != null) {
+          navigation.navigate("Home");
+        }
+      });
+    };
+    initial();
+  }, []);
   const handleSubmit = async () => {
-    navigation.navigate("Home");
-    // const userdata = await signIn(inputs);
-    // console.log(userdata);
-    // if (userdata) {
-    //   if (userdata.data.code === 200) {
-    //     AsyncStorage.setItem("token", userdata.data.data.token);
-    //     AsyncStorage.setItem("user", JSON.stringify(userdata.data.data));
-    //     navigation.navigate("OnCampus");
-    //   } else {
-    //     alert("Error", "User does not exist");
-    //   }
-    // } else {
-    //   alert("Error", "User does not exist");
-    // }
+    // navigation.navigate("Home");
+    const userdata = await signIn(inputs);
+    console.log(userdata);
+    if (userdata) {
+      if (userdata.data.code === 200) {
+        AsyncStorage.setItem("token", userdata.data.data.token);
+        AsyncStorage.setItem("user", JSON.stringify(userdata.data.data));
+
+        navigation.navigate("Home");
+      } else {
+        alert("Error", "User does not exist");
+      }
+    } else {
+      alert("Error", "User does not exist");
+    }
   };
   const validate = async () => {
     Keyboard.dismiss();
