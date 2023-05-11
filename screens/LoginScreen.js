@@ -22,8 +22,7 @@ const LoginScreen = ({ navigation }) => {
       if (userdata.data.code === 200) {
         AsyncStorage.setItem("token", userdata.data.data.token);
         AsyncStorage.setItem("user", JSON.stringify(userdata.data.data));
-
-        navigation.navigate("Home");
+        navigation.navigate("OnCampus");
       } else {
         alert("Error", "User does not exist");
       }
