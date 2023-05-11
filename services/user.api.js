@@ -176,6 +176,8 @@ export const applyJob = async (token, data) => {
     console.log(error);
   }
 };
+
+
 export const listJobApplicants = async (data) => {
   try {
     console.log(data);
@@ -184,6 +186,8 @@ export const listJobApplicants = async (data) => {
     console.log(error);
   }
 };
+
+
 export const getAllOffCampusJobs = async (data) => {
   try {
     console.log(data);
