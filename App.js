@@ -195,7 +195,7 @@ export default function App() {
       })}></Tab.Screen>
       <Tab.Screen
         name={"Settings"}
-        component={SkillNav}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -237,7 +237,7 @@ export default function App() {
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
       <Stack.Screen name="Skills" component={SkillsScreen} />
-      <Stack.Screen name="Home" component={SkillNav} />
+      <Stack.Screen name="Home" component={SkillNav} options={{headerShown:false}} />
       <Stack.Screen name="QuizDecpScreen" component={QuizDecpScreen} />
     </Stack.Navigator>
 
