@@ -1,5 +1,5 @@
 import axios from "axios";
-export const url = "https://trashify.onrender.com";
+export const url = "https://campus-engine.onrender.com";
 
 export const signIn = async (data) => {
   try {
@@ -11,62 +11,207 @@ export const signIn = async (data) => {
 };
 export const signup = async (data) => {
   try {
-    console.log("hi");
     console.log(data);
     return await axios.post(`${url}/api/auth/signup`, data);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const getUser = async (id) => {
+//user
+export const getAllQuiz = async (data) => {
   try {
-    console.log(id);
-    return await axios.get(`${url}/api/users/${id}`);
+    console.log(data);
+    return await axios.get(`${url}/api/user/getAllQuiz`, {
+      headers: { authorization: data },
+    });
   } catch (error) {
     console.log(error);
   }
 };
-export const trashRequest = async (data) => {
-  let response = null; 
-  let err = null; 
-  
-  await axios 
-    .post(`${url}/api/trashRequest/newtrashRequest `, data)
-    .then((res) => { 
-      console.log("Success response from QwikGift"); 
-      console.log(res.data); 
-      response = res.data; 
-    }) 
-    .catch((error) => { 
-      err=error;
-      // console.log(error)
-      // if (error) { 
-      //   // The request was made and the server responded with a non-2xx status code 
-      //   err = { 
-      //     code: error.status, 
-      //     message: error.message, 
-      //           }; 
-      // } else if (error.request) { 
-      //   err = { 
-      //     code: 444, 
-      //     message: "The request was made but no response was received",  
-      //   }; 
-      // } else { 
-      //   err = { 
-      //     code: 408, 
-      //     message: "Request Timeout", 
-      //   }; 
-      // } 
 
-    }); 
-  return [err, response];
-}
-export const payment = async (userId,amount) => {
+export const getUserInfo = async (data) => {
   try {
-    console.log("hi");
-    return await axios.put(`${url}/api/users/updateUserCredits/?userId=${userId}&amount=${amount}` );
+    console.log(data);
+    return await axios.get(`${url}/api/user/getUserInfo/${data}`);
   } catch (error) {
     console.log(error);
   }
-}
+};
+export const getResume = async (data) => {
+  try {
+    console.log(data);
+    return await axios.get(`${url}/api/user/getResume`, {
+      headers: { authorization: data },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const updateResume = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/user/updateResume`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const Upload = async (data, email) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/uploadImage`, {
+      email: email,
+      image: data,
+    });
+  } catch (error) {
+    console.log(error);
+    console.log("Error while calling signup API: ", error);
+  }
+};
+
+export const getAllEligibleJobs = async (token) => {
+  try {
+    // console.log(token);
+    return await axios.get(`${url}/api/user/getAllEligibleJobs`, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+// update user
+export const updateUser = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/user/updateUserInfo`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Company Routes
+
+// create job
+export const createJob = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/company/createJob`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const listCompanyJob = async (token) => {
+  try {
+    // console.log(data);
+    return await axios.get(`${url}/api/company/listCompanyJob`, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getJobDetail = async (token, id) => {
+  try {
+    // console.log(data);
+    return await axios.post(
+      `${url}/api/company/getJobInfo`,
+      { jobId: id },
+      { headers: { authorization: token } }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getQuiz = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(
+      `${url}/api/user/getQuiz`,
+      { title: data },
+      { headers: { authorization: token } }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getCompany = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.get(`${url}/api/company/getCompany`, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// TNP
+
+// get Students
+export const getStudents = async () => {
+  try {
+    // console.log(data);
+    return await axios.get(`${url}/api/user/getstudents`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const applyJob = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/user/applyJob`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const listJobApplicants = async (data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/company/listJobApplicants`, data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getAllOffCampusJobs = async (data) => {
+  try {
+    console.log(data);
+    return await axios.get(`${url}/api/user/getAllOffCampusJobs`, {
+      headers: { authorization: data },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//get all jobs
+export const getAllJobs = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/company/getAllJobs`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const updateJob = async (token, data) => {
+  try {
+    console.log(data);
+    return await axios.post(`${url}/api/company/updateJobStatus`, data, {
+      headers: { authorization: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
