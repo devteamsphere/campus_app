@@ -6,6 +6,8 @@ import NSLight from '../assets/fonts/NunitoSans_7pt-Light.ttf';
 import NSRegular from '../assets/fonts/NunitoSans_7pt-Regular.ttf';
 import NSBold from '../assets/fonts/NunitoSans_7pt-Bold.ttf';
 import NSExtraBold from '../assets/fonts/NunitoSans_7pt-ExtraBold.ttf';
+import ProfileScreen from './ProfileScreen';
+import QuizDecpScreen from './QuizDecpScreen';
 const data = [
     "C++",
     "Java",
@@ -23,9 +25,13 @@ const dataset = [
 import Svg, { Defs, Rect, LinearGradient, Stop } from 'react-native-svg';
 import Button from "../components/Button"
 import quiz from "../assets/quiz.svg"
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const FROM_COLOR = '#ffd89b';
 const TO_COLOR = '#feb47b';
+const Stack = createStackNavigator();
 export default function SkillsScreen({navigation}) {
     const [loaded] = useFonts({
         NSLight,
