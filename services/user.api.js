@@ -142,6 +142,7 @@ export const getQuiz = async (token, data) => {
     console.log(error);
   }
 };
+
 export const getCompany = async (token, data) => {
   try {
     console.log(data);

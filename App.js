@@ -18,12 +18,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import plus from "./assets/plus.png";
 
 // Font Awesome Icons...
-import { FontAwesome5 } from '@expo/vector-icons'
-import { useRef } from 'react';
-import ProfileScreen from './screens/ProfileScreen';
-import SkillsScreen from './screens/SkillsScreen';
+import { FontAwesome5 } from "@expo/vector-icons";
+import { useRef } from "react";
+import ProfileScreen from "./screens/ProfileScreen";
+import SkillsScreen from "./screens/SkillsScreen";
 import { createStackNavigator } from "@react-navigation/stack";
-import QuizDecpScreen from './screens/QuizDecpScreen';
+import QuizDecpScreen from "./screens/QuizDecpScreen";
 import OnCampus from "./screens/OnCampus";
 import LoginScreen from "./screens/LoginScreen";
 

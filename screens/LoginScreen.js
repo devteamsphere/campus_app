@@ -15,7 +15,6 @@ const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = React.useState(false);
   const handleSubmit = async () => {
     navigation.navigate("Home");
-
     // const userdata = await signIn(inputs);
     // console.log(userdata);
     // if (userdata) {
