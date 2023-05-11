@@ -25,6 +25,7 @@ const QuizDecpScreen = ({ route }) => {
     initial();
   }, []);
   return (
+    <>
     <View>
       <View style={style.card}>
         <Text style={{ fontSize: 20, color: "white" }}>
@@ -56,12 +57,13 @@ const QuizDecpScreen = ({ route }) => {
         <Text style={{ fontSize: 20, color: "#8256d0" }}>15 Questions</Text>
         <Text style={{ fontSize: 20, color: "#8256d0" }}>70% min</Text>
       </View>
-      <TouchableOpacity>
-        <View>
-          <Text style={style.startQuiz}>Start Quiz</Text>
-        </View>
-      </TouchableOpacity>
     </View>
+          <TouchableOpacity>
+          <View>
+            <Text style={style.startQuiz}>Start Quiz</Text>
+          </View>
+        </TouchableOpacity>
+        </>
   );
 };
 export default QuizDecpScreen;
