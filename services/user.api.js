@@ -12,7 +12,11 @@ export const signIn = async (data) => {
 export const signup = async (data) => {
   try {
     console.log(data);
-    return await axios.post(`${url}/api/auth/signup`, data);
+    let reqBody = {
+      ...data,
+      userType: "user",
+    };
+    return await axios.post(`${url}/api/auth/signup`, reqBody);
   } catch (error) {
     console.log(error);
   }
@@ -177,7 +181,6 @@ export const applyJob = async (token, data) => {
   }
 };
 
-
 export const listJobApplicants = async (data) => {
   try {
     console.log(data);
@@ -186,7 +189,6 @@ export const listJobApplicants = async (data) => {
     console.log(error);
   }
 };
-
 
 export const getAllOffCampusJobs = async (data) => {
   try {
