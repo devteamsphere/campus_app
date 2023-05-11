@@ -26,6 +26,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import QuizDecpScreen from "./screens/QuizDecpScreen";
 import OnCampus from "./screens/OnCampus";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 import OffCampus from "./screens/OffCampus";
 
 const Tab = createBottomTabNavigator();
@@ -245,7 +246,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="Skills" component={SkillsScreen} />
         <Stack.Screen
           name="Home"
