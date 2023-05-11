@@ -16,9 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const OnCampus = () => {
   const [jobs, setJobs] = useState([]);
   const [user, setUser] = useState({});
-  const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoiVGh1IE1heSAxMSAyMDIzIDEwOjAyOjQyIEdNVCswMDAwIChDb29yZGluYXRlZCBVbml2ZXJzYWwgVGltZSkiLCJ1c2VySWQiOiI2M2U3MjgyNjA5MTRlMDliNDg2MWFjOWMiLCJlbWFpbCI6ImRocnV2dGl3YXJpMDAzQGdtYWlsLmNvbSIsIl9pZCI6IjYzZTcyODI2MDkxNGUwOWI0ODYxYWM5YyIsInVzZXJUeXBlIjoidXNlciIsImlhdCI6MTY4Mzc5OTM2Mn0.eDEYMx1spQGN_wnuCZv4B3KmVt-Aas-wFwXAbvtLT4U"
-  );
+  const [token, setToken] = useState("");
   useEffect(() => {
     const initial = async () => {
       AsyncStorage.getItem("token").then((value) => {
@@ -68,9 +66,9 @@ const OnCampus = () => {
                 const apply = await applyJob(token, {
                   jobId: item._id,
                   applicationStatus: "applied",
-                  studentId: user._id,
+                  studentId: JSON.parse(user)._id,
                 });
-                console.log(apply);
+                // console.log(apply);
               }}
             />
           )}
