@@ -4,7 +4,7 @@ import { Animated, Dimensions, Image, Platform, StyleSheet, Text, TouchableOpaci
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import {Ionicons} from '@expo/vector-icons';
 // Plus...
 import plus from './assets/plus.png'
 
@@ -12,11 +12,27 @@ import plus from './assets/plus.png'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useRef } from 'react';
 import ProfileScreen from './screens/ProfileScreen';
+import SkillsScreen from './screens/SkillsScreen';
+import { createStackNavigator } from "@react-navigation/stack";
+import QuizDecpScreen from './screens/QuizDecpScreen';
+
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 // Hiding Tab Names...
+function SkillNav(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Skills" component={SkillsScreen} />
+      <Stack.Screen name="QuizDecpScreen" component={QuizDecpScreen} />
+
+    </Stack.Navigator>
+  )
+}
 export default function App() {
+
+  
 
   // Animated Tab Indicator...
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
@@ -66,6 +82,7 @@ export default function App() {
         }} listeners={({ navigation, route }) => ({
           // Onpress Update....
           tabPress: e => {
+            console.log('firstLaunch');
             Animated.spring(tabOffsetValue, {
               toValue: 0,
               useNativeDriver: true
@@ -103,28 +120,44 @@ export default function App() {
           // Extra Tab Screen For Action Button..
         }
 
-        <Tab.Screen name={"ActionButton"} component={EmptyScreen} options={{
+<Tab.Screen name={"Skill"} component={SkillsScreen} options={{
           tabBarIcon: ({ focused }) => (
+            // <View style={{
+            //   // centring Tab Button...
+            //   position: 'absolute',
+            //   top: 20
+            // }}>
 
-            <TouchableOpacity>
-              <View style={{
-                width: 55,
-                height: 55,
-                backgroundColor: '#8256d0',
-                borderRadius: 30,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: Platform.OS == "android" ? 50 : 30
-              }}>
-                <Image source={plus} style={{
-                  width: 22,
-                  height: 22,
-                  tintColor: 'white',
-                }}></Image>
-              </View>
-            </TouchableOpacity>
+            // </View>
+            <View style={{
+              width: 55,
+              height: 55,
+              backgroundColor: '#8256d0',
+              borderRadius: 30,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: Platform.OS == "android" ? 50 : 30
+
+            }}
+            >
+              <Image source={plus} style={{
+                width: 22,
+                height: 22,
+                tintColor: 'white',
+              }}></Image>
+              {/* <Ionicons name="at-outline" size={30} color="white" /> */}
+            </View>
           )
-        }}></Tab.Screen>
+        }} listeners={({ navigation, route }) => ({
+          // Onpress Update....
+          tabPress: e => {
+            console.log('firstLaunch');
+            Animated.spring(tabOffsetValue, {
+              toValue: 0,
+              useNativeDriver: true
+            }).start();
+          }
+        })}></Tab.Screen>
 
         <Tab.Screen name={"Notifications"} component={NotificationScreen} options={{
           tabBarIcon: ({ focused }) => (
@@ -150,7 +183,7 @@ export default function App() {
           }
         })}></Tab.Screen>
 
-        <Tab.Screen name={"Settings"} component={ProfileScreen} options={{
+        <Tab.Screen name={"Settings"} component={SkillNav} options={{
           tabBarIcon: ({ focused }) => (
             <View style={{
               // centring Tab Button...
