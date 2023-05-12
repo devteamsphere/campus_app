@@ -7,7 +7,7 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 import { ScrollView } from "react-native-gesture-handler";
 import Button from "../components/Button";
-export default function QuizScreen({ route }) {
+export default function QuizScreen({ route,navigation}) {
   var radio_props = [
     { label: "param1", value: 0 },
     { label: "param2", value: 1 },
@@ -15,10 +15,10 @@ export default function QuizScreen({ route }) {
     { label: "param2", value: 1 },
   ];
   const [value, setValue] = useState();
-  const [data, setData] = useState(route.params.data)
-  console.log(route.params.data.length);
-
-  
+  const [data, setData] = useState(route.params.data);
+  const handleSubmit = () => {
+    navigation.navigate('SubmitScreen',{count:data.length});
+  };
   return (
     <View>
       <View
@@ -34,16 +34,16 @@ export default function QuizScreen({ route }) {
         </View>
         <View style={{ flex: 1 }}>
           <Text style={{ textAlign: "right", fontSize: 20, fontWeight: 800 }}>
-            {timer}:00:00
+            30:00:00
           </Text>
         </View>
       </View>
-      <ScrollView style={{marginBottom:29}}>
+      <ScrollView style={{ marginBottom: 29 }}>
         {route.params.data.length > 0
           ? route.params.data.map((item, index) => {
               return (
                 <View
-                key={index}
+                  key={index}
                   style={{
                     padding: 10,
                     marginVertical: 10,
@@ -60,7 +60,9 @@ export default function QuizScreen({ route }) {
                 >
                   <View style={{ flexDirection: "row" }}>
                     <View style={{ flex: 1 }}>
-                      <Text style={{ fontSize: 15, fontWeight: 400 }}>Q {index+1}</Text>
+                      <Text style={{ fontSize: 15, fontWeight: 400 }}>
+                        Q {index + 1}
+                      </Text>
                     </View>
                     <View style={{ flex: 1 }}>
                       <Text
@@ -115,10 +117,8 @@ export default function QuizScreen({ route }) {
               );
             })
           : null}
-          <Button title="Submit"  />
+        <Button title="Submit" onPress={handleSubmit} />
       </ScrollView>
-      
-
     </View>
   );
 }

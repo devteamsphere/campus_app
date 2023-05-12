@@ -17,6 +17,7 @@ const LoginScreen = ({ navigation }) => {
     const initial = async () => {
       AsyncStorage.getItem("token").then((value) => {
         if (value != null) {
+          console.log('first')
           navigation.navigate("Home");
         }
       });

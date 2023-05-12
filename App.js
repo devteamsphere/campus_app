@@ -29,6 +29,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import OffCampus from "./screens/OffCampus";
 import QuizScreen from "./screens/QuizScreen";
+import SubmitScreen from "./screens/SubmitScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -257,6 +258,7 @@ export default function App() {
         <Stack.Screen name="QuizDecpScreen" component={QuizDecpScreen} />
         {/* <Stack.Screen name="ProfileScreen" component={ProfileScreen}/> */}
         <Stack.Screen name="QuizScreen" component={QuizScreen} />
+        <Stack.Screen name="SubmitScreen" component={SubmitScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
