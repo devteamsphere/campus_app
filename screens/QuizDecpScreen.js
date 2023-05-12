@@ -5,7 +5,7 @@ import { getQuiz } from "../services/user.api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const QuizDecpScreen = ({ route }) => {
+const QuizDecpScreen = ({ route,navigation }) => {
   const [data, setData] = useState();
   const [token, setToken] = useState("");
   useEffect(() => {
@@ -17,7 +17,8 @@ const QuizDecpScreen = ({ route }) => {
           console.log(value);
           const userData = await getQuiz(value, "MERN");
 
-          console.log(userData);
+          console.log(userData.data.data[0].quizQuestions);
+          setData(userData.data.data[0].quizQuestions);
         }
       });
     };
@@ -58,7 +59,9 @@ const QuizDecpScreen = ({ route }) => {
         <Text style={{ fontSize: 20, color: "#8256d0" }}>70% min</Text>
       </View>
     </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+            navigation.navigate("QuizScreen",{data:data})
+          }}>
           <View>
             <Text style={style.startQuiz}>Start Quiz</Text>
           </View>

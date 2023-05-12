@@ -28,6 +28,7 @@ import OnCampus from "./screens/OnCampus";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import OffCampus from "./screens/OffCampus";
+import QuizScreen from "./screens/QuizScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -255,6 +256,7 @@ export default function App() {
         />
         <Stack.Screen name="QuizDecpScreen" component={QuizDecpScreen} />
         {/* <Stack.Screen name="ProfileScreen" component={ProfileScreen}/> */}
+        <Stack.Screen name="QuizScreen" component={QuizScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
