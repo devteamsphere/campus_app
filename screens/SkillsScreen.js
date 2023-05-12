@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ImageBackground,Image} from 'react-native'
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import background from "../assets/image.png"
 import { useFonts } from 'expo-font';
 import NSLight from '../assets/fonts/NunitoSans_7pt-Light.ttf';
@@ -8,16 +8,16 @@ import NSBold from '../assets/fonts/NunitoSans_7pt-Bold.ttf';
 import NSExtraBold from '../assets/fonts/NunitoSans_7pt-ExtraBold.ttf';
 import ProfileScreen from './ProfileScreen';
 import QuizDecpScreen from './QuizDecpScreen';
-const data = [
-    "C++",
-    "Java",
-    "Python",
-    "ReactJs",
-    "NestJs",
-    "MongoDB",
-    "ExpressJs",
-    "NodeJs",
-]
+// const data = [
+//     "C++",
+//     "Java",
+//     "Python",
+//     "ReactJs",
+//     "NestJs",
+//     "MongoDB",
+//     "ExpressJs",
+//     "NodeJs",
+// ]
 const dataset = [
     "JavaScript",
     "React Native",
@@ -25,13 +25,12 @@ const dataset = [
 import Svg, { Defs, Rect, LinearGradient, Stop } from 'react-native-svg';
 import Button from "../components/Button"
 import quiz from "../assets/quiz.svg"
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getUserInfo} from "../services/user.api"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const FROM_COLOR = '#ffd89b';
 const TO_COLOR = '#feb47b';
-const Stack = createStackNavigator();
+
 export default function SkillsScreen({navigation}) {
     const [loaded] = useFonts({
         NSLight,
@@ -39,6 +38,32 @@ export default function SkillsScreen({navigation}) {
         NSBold,
         NSExtraBold,
     });
+    const [data, setData] = useState({});
+
+useEffect(() => {
+  const getData = async () => {
+    const arr=[];
+    console.log('firstLaunch');
+    const id= await AsyncStorage.getItem('user');
+    const requestData = await getUserInfo(JSON.parse(id)._id);
+    console.log(id._id);
+    if (requestData) {
+      console.log(requestData.data.data);
+    //   setData(requestData.data.data);
+      requestData.data.data.skills.map((item,index)=>{
+            arr.push(item.name);
+        }
+        )
+        console.log(arr);
+        setData(arr);
+
+    }
+    else {
+      alert('User does not exist');
+    }
+  }
+getData();  
+}, [])
     return (
         <View>
             <View style={{ marginHorizontal: 20, marginTop: 10 }}>
@@ -47,7 +72,7 @@ export default function SkillsScreen({navigation}) {
                 </Text>
 
                 <View style={styles.FlexBox}>
-                    {data ? data.map((item, index) => {
+                    {data.length>0 ? data.map((item, index) => {
                         return (
                             <View style={styles.label}>
                                 <Text style={{ fontSize: 15, padding: 5, fontFamily: 'NSLight', color: "#ffffff", textAlign: "center" }}>

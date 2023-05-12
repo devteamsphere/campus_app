@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 5,
-    backgroundColor: "#228B22",
-    borderRadius: 10,
+    backgroundColor: "#8256d0",
+    borderRadius: 5,
   },
   text: {
     color: "#fff",
@@ -128,9 +128,9 @@ const styles = StyleSheet.create({
   },
   badge: {
     color: "white",
-    backgroundColor: "#3498db",
-    padding: 4,
-    borderRadius: 10,
+    backgroundColor: "#8256d0",
+    padding: 7,
+    borderRadius: 5,
     fontSize: 10,
   },
 });

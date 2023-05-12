@@ -59,8 +59,9 @@ const OffCampus = () => {
         <FlatList
           showsHorizontalScrollIndicator={false}
           data={jobs}
-          renderItem={({ item }) => (
+          renderItem={({ item,index }) => (
             <OffCampusCard
+            key={index}
               Title={item.Title}
               Company={item.Company}
               Location={item.Location}

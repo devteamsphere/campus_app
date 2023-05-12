@@ -52,8 +52,9 @@ const OnCampus = () => {
         <FlatList
           showsHorizontalScrollIndicator={false}
           data={jobs}
-          renderItem={({ item }) => (
+          renderItem={({ item,index }) => (
             <CampusCard
+            key={index}
               jobTitle={item.jobTitle}
               jobDescription={item.jobDescription}
               jobLocation={item.jobLocation}
