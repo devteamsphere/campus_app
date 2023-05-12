@@ -11,6 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 const SubmitScreen = () => {
 const route = useRoute();
 // console.log(route.params);
+const a=Math.floor(Math.random() * route.params.count);
 return (
   <SafeAreaView style={{ margin: 10 }}>
     <View
@@ -80,8 +81,19 @@ return (
       /> */}
 
       <Pressable style={{backgroundColor:"green",padding:8,marginLeft:"auto",marginRight:"auto",marginBottom:20,borderRadius:5}}>
-        <Text style={{color:"white",textAlign:"center"}}>{ Math.floor(Math.random() * route.params.count)}</Text>
+        <Text style={{color:"white",textAlign:"center"}}>{a}</Text>
       </Pressable>
+      <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginVertical: 10,
+      }}
+    >
+      <Text  style={{ fontSize: 20, marginBottom: 10 }}>Status</Text>
+      <Text  style={{ fontSize: 20, marginBottom: 10 }}>{a>=route.params.count*0.7 ? "pass":"fail"}</Text>
+    </View>
     </Pressable>
   </SafeAreaView>
 );
